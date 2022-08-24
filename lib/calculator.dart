@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'numButton.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({Key? key, required String title}) : super(key: key);
@@ -12,21 +12,6 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  Widget numButton(String btnText, Color btnColor, Color txtColor) {
-    return ElevatedButton(
-      onPressed: () => {calculate(btnText)},
-      style: ElevatedButton.styleFrom(
-        fixedSize: Size(70, 70),
-        shape: CircleBorder(),
-        primary: btnColor,
-      ),
-      child: Text(
-        btnText,
-        style: TextStyle(fontSize: 25, color: txtColor),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +41,10 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  numButton("C", Colors.grey, Colors.white),
-                  numButton("⌫", Colors.grey, Colors.white),
-                  numButton("%", Colors.grey, Colors.white),
-                  numButton("/", Colors.orange, Colors.white),
+                  NumButton(btnText: "C", btnColor: Colors.grey),
+                  NumButton(btnText: "⌫", btnColor: Colors.grey),
+                  NumButton(btnText: "%", btnColor: Colors.grey),
+                  NumButton(btnText: "/", btnColor: Colors.orange),
                 ],
               ),
               SizedBox(
@@ -68,10 +53,10 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  numButton("7", (Colors.grey[850])!, Colors.white),
-                  numButton("8", (Colors.grey[850])!, Colors.white),
-                  numButton("9", (Colors.grey[850])!, Colors.white),
-                  numButton("x", Colors.orange, Colors.white),
+                  NumButton(btnText: "7", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "8", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "9", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "x", btnColor: Colors.orange),
                 ],
               ),
               SizedBox(
@@ -80,10 +65,10 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  numButton("4", (Colors.grey[850])!, Colors.white),
-                  numButton("5", (Colors.grey[850])!, Colors.white),
-                  numButton("6", (Colors.grey[850])!, Colors.white),
-                  numButton("-", Colors.orange, Colors.white),
+                  NumButton(btnText: "4", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "5", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "6", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "-", btnColor: Colors.orange),
                 ],
               ),
               SizedBox(
@@ -92,10 +77,10 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  numButton("1", (Colors.grey[850])!, Colors.white),
-                  numButton("2", (Colors.grey[850])!, Colors.white),
-                  numButton("3", (Colors.grey[850])!, Colors.white),
-                  numButton("+", Colors.orange, Colors.white),
+                  NumButton(btnText: "1", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "2", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "3", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "+", btnColor: Colors.orange),
                 ],
               ),
               SizedBox(
@@ -116,8 +101,8 @@ class _CalculatorState extends State<Calculator> {
                     style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(), primary: (Colors.grey[850])),
                   ),
-                  numButton(".", (Colors.grey[850])!, Colors.white),
-                  numButton("=", Colors.orange, Colors.white),
+                  NumButton(btnText: ".", btnColor: (Colors.grey[850])!),
+                  NumButton(btnText: "=", btnColor: Colors.orange),
                 ],
               ),
               SizedBox(
