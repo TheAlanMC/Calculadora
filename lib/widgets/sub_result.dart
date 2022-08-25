@@ -17,6 +17,7 @@ class SubResult extends StatelessWidget {
     return Container(
         width: double.infinity,
         alignment: Alignment.centerRight,
+        margin: EdgeInsets.only(bottom: 30),
         child: FittedBox(
           fit: BoxFit.contain,
           child: Text(
