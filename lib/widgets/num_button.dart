@@ -6,28 +6,29 @@ class NumButton extends StatelessWidget {
   final Color txtColor;
   final bool big;
 
-  const NumButton(
-      {Key? key,
-      required this.btnText,
-      required this.btnColor,
-      this.txtColor = Colors.white,
-      this.big = false})
-      : super(key: key);
+  final Function onPressed;
+
+  const NumButton({
+    Key? key,
+    required this.btnText,
+    required this.btnColor,
+    this.txtColor = Colors.white,
+    this.big = false,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle = TextButton.styleFrom(
-      backgroundColor: this.btnColor,
-      primary: this.txtColor,
+    final buttonStyle = TextButton.styleFrom(
+      backgroundColor: btnColor,
+      primary: txtColor,
       shape: StadiumBorder(),
     );
     return Container(
       margin: EdgeInsets.only(bottom: 10, right: 5, left: 5),
       child: TextButton(
-          style: ButtonStyle,
-          onPressed: () {
-            print(btnText);
-          },
+          style: buttonStyle,
+          onPressed: () => this.onPressed(),
           child: SizedBox(
             width: big ? 150 : 65,
             height: 65,

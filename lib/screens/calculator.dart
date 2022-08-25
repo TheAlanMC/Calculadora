@@ -1,10 +1,12 @@
-import 'package:calculadora/widgets/main_result.dart';
-import 'package:calculadora/widgets/sub_result.dart';
+import 'package:calculadora/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
-import '../widgets/num_button.dart';
+import 'package:get/get.dart';
+import 'package:calculadora/widgets/num_button.dart';
+import 'package:calculadora/widgets/math_result.dart';
 
 class Calculator extends StatelessWidget {
-  const Calculator({Key? key}) : super(key: key);
+  Calculator({Key? key}) : super(key: key);
+  final calculatorCtrl = Get.put(CalculatorController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,65 +19,130 @@ class Calculator extends StatelessWidget {
                     Expanded(
                       child: Container(),
                     ),
-                    SubResult(text: "99 X 99"),
-                    MainResult(text: "81"),
+                    MathResult(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         NumButton(
-                          btnText: "AC",
+                          btnText: 'AC',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
+                          onPressed: () => calculatorCtrl.resetAll(),
                         ),
                         NumButton(
-                          btnText: "+/-",
+                          btnText: '+/-',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
+                          onPressed: () =>
+                              calculatorCtrl.changeNegativePositive(),
                         ),
                         NumButton(
-                          btnText: "⌫",
+                          btnText: '⌫',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
+                          onPressed: () => calculatorCtrl.deleteLastEntry(),
                         ),
-                        NumButton(btnText: "÷", btnColor: Colors.orange),
+                        NumButton(
+                          btnText: '÷',
+                          btnColor: Colors.orange,
+                          onPressed: () => calculatorCtrl.selectOperation('÷'),
+                        ),
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        NumButton(btnText: "7", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "8", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "9", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "X", btnColor: Colors.orange),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        NumButton(btnText: "4", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "5", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "6", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "-", btnColor: Colors.orange),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        NumButton(btnText: "1", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "2", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "3", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "+", btnColor: Colors.orange),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         NumButton(
-                            btnText: "0",
-                            btnColor: Color(0xff303030),
-                            big: true),
-                        NumButton(btnText: ".", btnColor: Color(0xff303030)),
-                        NumButton(btnText: "=", btnColor: Colors.orange),
+                          btnText: '7',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('7'),
+                        ),
+                        NumButton(
+                          btnText: '8',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('8'),
+                        ),
+                        NumButton(
+                          btnText: '9',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('9'),
+                        ),
+                        NumButton(
+                          btnText: 'x',
+                          btnColor: Colors.orange,
+                          onPressed: () => calculatorCtrl.selectOperation('x'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NumButton(
+                          btnText: '4',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('4'),
+                        ),
+                        NumButton(
+                          btnText: '5',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('5'),
+                        ),
+                        NumButton(
+                          btnText: '6',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('6'),
+                        ),
+                        NumButton(
+                          btnText: '-',
+                          btnColor: Colors.orange,
+                          onPressed: () => calculatorCtrl.selectOperation('-'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NumButton(
+                          btnText: '1',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('1'),
+                        ),
+                        NumButton(
+                          btnText: '2',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('2'),
+                        ),
+                        NumButton(
+                          btnText: '3',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addNumber('3'),
+                        ),
+                        NumButton(
+                          btnText: '+',
+                          btnColor: Colors.orange,
+                          onPressed: () => calculatorCtrl.selectOperation('+'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NumButton(
+                          btnText: '0',
+                          btnColor: Color(0xff303030),
+                          big: true,
+                          onPressed: () => calculatorCtrl.addNumber('0'),
+                        ),
+                        NumButton(
+                          btnText: '.',
+                          btnColor: Color(0xff303030),
+                          onPressed: () => calculatorCtrl.addDecimalPoint(),
+                        ),
+                        NumButton(
+                          btnText: '=',
+                          btnColor: Colors.orange,
+                          onPressed: () => calculatorCtrl.calculateResult(),
+                        ),
                       ],
                     ),
                   ],
