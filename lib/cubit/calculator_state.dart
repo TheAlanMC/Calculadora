@@ -1,6 +1,16 @@
 part of 'calculator_cubit.dart';
 
-@immutable
-abstract class CalculatorState {}
+class CalculatorState {
+  final String formula;
+  final String operation;
+  final String subtext;
+  final String text;
+  final bool nuevaOperation;
 
-class CalculatorInitial extends CalculatorState {}
+  CalculatorState(
+      {this.formula = ' ',
+      this.operation = '',
+      this.subtext = '',
+      this.text = '0',
+      this.nuevaOperation = true});
+}

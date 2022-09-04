@@ -1,12 +1,15 @@
+import 'package:calculadora/cubit/calculator_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:calculadora/widgets/num_button.dart';
 import 'package:calculadora/widgets/math_result.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Calculator extends StatelessWidget {
   const Calculator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final calculatorCubit = context.read<CalculatorCubit>();
     return Scaffold(
         body: SafeArea(
             child: Container(
@@ -16,7 +19,7 @@ class Calculator extends StatelessWidget {
                     Expanded(
                       child: Container(),
                     ),
-                    //  const MathResult(),
+                    const MathResult(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -51,17 +54,17 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '7',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('7'),
                         ),
                         NumButton(
                           btnText: '8',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('8'),
                         ),
                         NumButton(
                           btnText: '9',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () => {},
+                          onPressed: () => calculatorCubit.addNumber('9'),
                         ),
                         NumButton(
                           btnText: 'x',
@@ -76,17 +79,17 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '4',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () => {},
+                          onPressed: () => calculatorCubit.addNumber('4'),
                         ),
                         NumButton(
                           btnText: '5',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('5'),
                         ),
                         NumButton(
                           btnText: '6',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('6'),
                         ),
                         NumButton(
                           btnText: '-',
@@ -101,17 +104,17 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '1',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('1'),
                         ),
                         NumButton(
                           btnText: '2',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('2'),
                         ),
                         NumButton(
                           btnText: '3',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('3'),
                         ),
                         NumButton(
                           btnText: '+',
