@@ -141,7 +141,7 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '=',
                           btnColor: Colors.orange,
-                          onPressed: () => {},
+                          onPressed: () => calculatorCubit.calculateResult(),
                         ),
                       ],
                     ),

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:math_expressions/math_expressions.dart';
 part 'calculator_state.dart';
 
 class CalculatorCubit extends Cubit<CalculatorState> {
@@ -104,5 +105,26 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       subtext: newSubNumber,
       text: newNumber,
     ));
+  }
+
+  void calculateResult() {
+    String finalFormula;
+    if (state.subtext.isNotEmpty) {
+      finalFormula = state.formula + state.operation + state.text;
+      finalFormula = finalFormula.replaceAll('x', '*');
+      finalFormula = finalFormula.replaceAll('÷', '/');
+
+      Parser p = Parser();
+      Expression exp = p.parse(finalFormula);
+      ContextModel cm = ContextModel();
+      double eval = exp.evaluate(EvaluationType.REAL, cm);
+
+      emit(CalculatorState(
+          formula: eval.toString(),
+          operation: '',
+          subtext: '',
+          text: ' ',
+          result: eval.toString()));
+    }
   }
 }

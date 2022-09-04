@@ -18,7 +18,10 @@ class MathResult extends StatelessWidget {
               operation: state.operation,
               subtext: state.subtext,
             ),
-            MainResult(text: state.text),
+            MainResult(
+              text: state.text,
+              result: state.result,
+            ),
           ],
         );
       },

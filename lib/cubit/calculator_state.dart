@@ -5,6 +5,7 @@ class CalculatorState {
   final String operation;
   final String subtext;
   final String text;
+  final String result;
   final bool nuevaOperation;
 
   CalculatorState(
@@ -12,5 +13,6 @@ class CalculatorState {
       this.operation = '',
       this.subtext = '',
       this.text = '0',
+      this.result = ' ',
       this.nuevaOperation = true});
 }
