@@ -66,16 +66,22 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   }
 
   void selectOperation(String operation) {
-    String newOperation = state.operation, newFormula = state.formula;
+    String newOperation = state.operation,
+        newFormula = state.formula,
+        newNumber = '';
     if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
       newFormula = state.formula + state.operation + state.text;
       newOperation = operation;
+      if (state.operation.isNotEmpty) {
+        newNumber = _mathOperation(newFormula);
+      }
     } else if (state.formula.isNotEmpty) {
       newOperation = operation;
     }
     emit(CalculatorState(
       formula: newFormula,
       operation: newOperation,
+      text: newNumber,
     ));
   }
 
@@ -108,17 +114,14 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   void calculateResult() {
     if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
       String finalFormula = state.formula + state.operation + state.text;
-      String resultado = _mathOperation(finalFormula);
-      if (resultado.endsWith('.0')) {
-        resultado = resultado.substring(0, resultado.length - 2);
-      }
-      String formula = resultado == 'Infinity' ? '' : resultado;
+      String result = _mathOperation(finalFormula);
+      String formula = result == 'Infinity' ? '' : result;
       emit(CalculatorState(
           formula: formula,
           operation: '',
           subtext: '',
           text: ' ',
-          result: resultado,
+          result: result,
           nuevaOperation: false));
     }
   }
@@ -131,6 +134,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     Expression exp = p.parse(finalFormula);
     ContextModel cm = ContextModel();
     double eval = exp.evaluate(EvaluationType.REAL, cm);
-    return eval.toString();
+    String result = eval.toString();
+    if (result.endsWith('.0')) {
+      result = result.substring(0, result.length - 2);
+    }
+    return result;
   }
 }
