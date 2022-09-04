@@ -1,25 +1,22 @@
-import 'package:calculadora/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:calculadora/widgets/num_button.dart';
 import 'package:calculadora/widgets/math_result.dart';
 
 class Calculator extends StatelessWidget {
-  Calculator({Key? key}) : super(key: key);
-  final calculatorCtrl = Get.put(CalculatorController());
+  const Calculator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
                     Expanded(
                       child: Container(),
                     ),
-                    MathResult(),
+                    //  const MathResult(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -27,25 +24,24 @@ class Calculator extends StatelessWidget {
                           btnText: 'AC',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () => calculatorCtrl.resetAll(),
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '+/-',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () =>
-                              calculatorCtrl.changeNegativePositive(),
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '⌫',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () => calculatorCtrl.deleteLastEntry(),
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '÷',
                           btnColor: Colors.orange,
-                          onPressed: () => calculatorCtrl.selectOperation('÷'),
+                          onPressed: () {},
                         ),
                       ],
                     ),
@@ -54,23 +50,23 @@ class Calculator extends StatelessWidget {
                       children: [
                         NumButton(
                           btnText: '7',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('7'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '8',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('8'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '9',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('9'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () => {},
                         ),
                         NumButton(
                           btnText: 'x',
                           btnColor: Colors.orange,
-                          onPressed: () => calculatorCtrl.selectOperation('x'),
+                          onPressed: () => {},
                         ),
                       ],
                     ),
@@ -79,23 +75,23 @@ class Calculator extends StatelessWidget {
                       children: [
                         NumButton(
                           btnText: '4',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('4'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () => {},
                         ),
                         NumButton(
                           btnText: '5',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('5'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '6',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('6'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '-',
                           btnColor: Colors.orange,
-                          onPressed: () => calculatorCtrl.selectOperation('-'),
+                          onPressed: () {},
                         ),
                       ],
                     ),
@@ -104,23 +100,23 @@ class Calculator extends StatelessWidget {
                       children: [
                         NumButton(
                           btnText: '1',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('1'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '2',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('2'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '3',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addNumber('3'),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '+',
                           btnColor: Colors.orange,
-                          onPressed: () => calculatorCtrl.selectOperation('+'),
+                          onPressed: () {},
                         ),
                       ],
                     ),
@@ -129,19 +125,19 @@ class Calculator extends StatelessWidget {
                       children: [
                         NumButton(
                           btnText: '0',
-                          btnColor: Color(0xff303030),
+                          btnColor: Colors.grey.shade700,
                           big: true,
-                          onPressed: () => calculatorCtrl.addNumber('0'),
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '.',
-                          btnColor: Color(0xff303030),
-                          onPressed: () => calculatorCtrl.addDecimalPoint(),
+                          btnColor: Colors.grey.shade700,
+                          onPressed: () {},
                         ),
                         NumButton(
                           btnText: '=',
                           btnColor: Colors.orange,
-                          onPressed: () => calculatorCtrl.calculateResult(),
+                          onPressed: () => {},
                         ),
                       ],
                     ),

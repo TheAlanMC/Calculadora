@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SubResult extends StatelessWidget {
-  final String firstNumber;
-  final String secondNumber;
+  final String formula;
   final String operation;
 
-  const SubResult(
-      {Key? key,
-      required this.firstNumber,
-      required this.secondNumber,
-      required this.operation})
+  const SubResult({Key? key, required this.formula, required this.operation})
       : super(key: key);
 
   @override
@@ -17,12 +12,12 @@ class SubResult extends StatelessWidget {
     return Container(
         width: double.infinity,
         alignment: Alignment.centerRight,
-        margin: EdgeInsets.only(bottom: 30),
+        margin: const EdgeInsets.only(bottom: 30),
         child: FittedBox(
           fit: BoxFit.contain,
           child: Text(
-            firstNumber + operation + secondNumber,
-            style: TextStyle(fontSize: 20),
+            formula + operation,
+            style: const TextStyle(fontSize: 20),
           ),
         ));
   }

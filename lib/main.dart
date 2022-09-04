@@ -1,4 +1,6 @@
+import 'package:calculadora/cubit/calculator_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'screens/calculator.dart';
 
 void main() {
@@ -10,11 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Calculadora',
-        home: Calculator(),
-        theme:
-            ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black));
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => CalculatorCubit())],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Calculadora',
+          home: const Calculator(),
+          theme:
+              ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black)),
+    );
   }
 }

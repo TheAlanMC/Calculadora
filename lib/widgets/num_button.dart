@@ -22,20 +22,20 @@ class NumButton extends StatelessWidget {
     final buttonStyle = TextButton.styleFrom(
       backgroundColor: btnColor,
       primary: txtColor,
-      shape: StadiumBorder(),
+      shape: const StadiumBorder(),
     );
     return Container(
-      margin: EdgeInsets.only(bottom: 10, right: 5, left: 5),
+      margin: const EdgeInsets.only(bottom: 10, right: 5, left: 5),
       child: TextButton(
           style: buttonStyle,
-          onPressed: () => this.onPressed(),
+          onPressed: () => onPressed(),
           child: SizedBox(
             width: big ? 150 : 65,
             height: 65,
             child: Center(
                 child: Text(btnText,
-                    style:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.w700))),
+                    style: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.w700))),
           )),
     );
   }
