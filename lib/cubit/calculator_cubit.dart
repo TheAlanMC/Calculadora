@@ -45,7 +45,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   void addDecimalPoint() {
     final String newNumber;
     if (!state.nuevaOperation) {
-      CalculatorState();
+      emit(CalculatorState());
     }
     if (!state.text.contains('.')) {
       if (state.text.startsWith('0') || state.text.isEmpty) {
@@ -106,24 +106,31 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   }
 
   void calculateResult() {
-    String finalFormula;
     if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
-      finalFormula = state.formula + state.operation + state.text;
-      finalFormula = finalFormula.replaceAll('x', '*');
-      finalFormula = finalFormula.replaceAll('÷', '/');
-
-      Parser p = Parser();
-      Expression exp = p.parse(finalFormula);
-      ContextModel cm = ContextModel();
-      double eval = exp.evaluate(EvaluationType.REAL, cm);
-
+      String finalFormula = state.formula + state.operation + state.text;
+      String resultado = _mathOperation(finalFormula);
+      if (resultado.endsWith('.0')) {
+        resultado = resultado.substring(0, resultado.length - 2);
+      }
+      String formula = resultado == 'Infinity' ? '' : resultado;
       emit(CalculatorState(
-          formula: eval.toString(),
+          formula: formula,
           operation: '',
           subtext: '',
           text: ' ',
-          result: eval.toString(),
+          result: resultado,
           nuevaOperation: false));
     }
+  }
+
+  String _mathOperation(String finalFormula) {
+    finalFormula = state.formula + state.operation + state.text;
+    finalFormula = finalFormula.replaceAll('x', '*');
+    finalFormula = finalFormula.replaceAll('÷', '/');
+    Parser p = Parser();
+    Expression exp = p.parse(finalFormula);
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+    return eval.toString();
   }
 }
