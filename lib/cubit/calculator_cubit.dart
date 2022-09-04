@@ -12,9 +12,9 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   void addNumber(String number) {
     final String newNumber;
     if (!state.nuevaOperation) {
-      CalculatorState();
+      emit(CalculatorState());
     }
-    if (state.text == '0') {
+    if (state.text.isEmpty || state.text == '0') {
       newNumber = number;
     } else if (state.text == '-0') {
       newNumber = '-' + number;
@@ -48,8 +48,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       CalculatorState();
     }
     if (!state.text.contains('.')) {
-      if (state.text.startsWith('0')) {
+      if (state.text.startsWith('0') || state.text.isEmpty) {
         newNumber = '0.';
+      } else if (state.text == '-') {
+        newNumber = '-0.';
       } else {
         newNumber = state.text + '.';
       }
@@ -64,17 +66,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   }
 
   void selectOperation(String operation) {
-    String newOperation, newFormula;
-    if (state.text == '0' || state.text == '-0') {
-      newFormula = state.formula;
-    } else {
-      if (state.operation.isEmpty) {
-        newFormula = state.formula + state.text;
-      } else {
-        newFormula = state.formula + state.operation + state.text;
-      }
+    String newOperation = state.operation, newFormula = state.formula;
+    if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
+      newFormula = state.formula + state.operation + state.text;
+      newOperation = operation;
+    } else if (state.formula.isNotEmpty) {
+      newOperation = operation;
     }
-    newOperation = operation;
     emit(CalculatorState(
       formula: newFormula,
       operation: newOperation,
@@ -109,7 +107,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
   void calculateResult() {
     String finalFormula;
-    if (state.subtext.isNotEmpty) {
+    if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
       finalFormula = state.formula + state.operation + state.text;
       finalFormula = finalFormula.replaceAll('x', '*');
       finalFormula = finalFormula.replaceAll('÷', '/');
@@ -124,7 +122,8 @@ class CalculatorCubit extends Cubit<CalculatorState> {
           operation: '',
           subtext: '',
           text: ' ',
-          result: eval.toString()));
+          result: eval.toString(),
+          nuevaOperation: false));
     }
   }
 }

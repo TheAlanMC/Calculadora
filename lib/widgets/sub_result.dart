@@ -21,7 +21,7 @@ class SubResult extends StatelessWidget {
         child: FittedBox(
           fit: BoxFit.contain,
           child: Text(
-            formula + operation + subtext,
+            ' ' + formula + operation + subtext,
             style: const TextStyle(fontSize: 20),
           ),
         ));

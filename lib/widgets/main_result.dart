@@ -15,11 +15,11 @@ class MainResult extends StatelessWidget {
           fit: BoxFit.contain,
           child: Column(children: [
             Text(
-              text,
+              ' ' + text,
               style: const TextStyle(fontSize: 50),
             ),
             Text(
-              result,
+              ' ' + result,
               style: const TextStyle(fontSize: 60, color: Colors.orange),
             )
           ]),

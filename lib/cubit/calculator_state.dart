@@ -9,10 +9,10 @@ class CalculatorState {
   final bool nuevaOperation;
 
   CalculatorState(
-      {this.formula = ' ',
+      {this.formula = '',
       this.operation = '',
       this.subtext = '',
-      this.text = '0',
-      this.result = ' ',
+      this.text = '',
+      this.result = '',
       this.nuevaOperation = true});
 }
