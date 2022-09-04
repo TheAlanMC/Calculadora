@@ -30,6 +30,9 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
   void changeNegativePositive() {
     final String newNumber;
+    if (!state.nuevaOperation) {
+      emit(CalculatorState());
+    }
     if (state.text.startsWith('-')) {
       newNumber = state.text.replaceFirst('-', '');
     } else {
