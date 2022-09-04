@@ -1,6 +1,5 @@
-# calculadora
-
-A new Flutter project.
+# Flutter Calculator Using BLoC
+<img src="https://user-images.githubusercontent.com/102682441/188337951-afb7dead-d0b4-418b-8c1d-6dd752d17232.gif" width="240">
 
 ## Getting Started
 
