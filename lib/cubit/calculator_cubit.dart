@@ -14,7 +14,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     if (!state.nuevaOperation) {
       emit(CalculatorState());
     }
-    if (state.text.isEmpty || state.text == '0') {
+    if (state.subtext.isEmpty || state.subtext == '0') {
       newNumber = number;
     } else if (state.text == '-0') {
       newNumber = '-' + number;
@@ -74,6 +74,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       newOperation = operation;
       if (state.operation.isNotEmpty) {
         newNumber = _mathOperation(newFormula);
+        if (newNumber == 'Infinity' || newNumber == 'NaN') {
+          newFormula = '';
+          newOperation = '';
+        }
       }
     } else if (state.formula.isNotEmpty) {
       newOperation = operation;
@@ -88,10 +92,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   void deleteLastEntry() {
     final String newFormula, newOperation, newSubNumber, newNumber;
     if (state.subtext.isEmpty) {
-      newFormula = ' ';
+      newFormula = '';
       newOperation = '';
       newSubNumber = '';
-      newNumber = '0';
+      newNumber = '';
     } else if (state.text.replaceAll('-', '').length > 1) {
       newFormula = state.formula;
       newOperation = state.operation;
@@ -101,7 +105,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       newFormula = state.formula;
       newOperation = state.operation;
       newSubNumber = '';
-      newNumber = '0';
+      newNumber = '';
     }
     emit(CalculatorState(
       formula: newFormula,
@@ -115,9 +119,12 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     if (state.subtext.isNotEmpty && !state.subtext.endsWith('-')) {
       String finalFormula = state.formula + state.operation + state.text;
       String result = _mathOperation(finalFormula);
-      String formula = result == 'Infinity' ? '' : result;
+      String newFormula = result;
+      if (result == 'Infinity' || result == 'NaN') {
+        newFormula = '';
+      }
       emit(CalculatorState(
-          formula: formula,
+          formula: newFormula,
           operation: '',
           subtext: '',
           text: ' ',
