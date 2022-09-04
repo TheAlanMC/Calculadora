@@ -40,7 +40,7 @@ class Calculator extends StatelessWidget {
                           btnText: '⌫',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.deleteLastEntry(),
                         ),
                         NumButton(
                           btnText: '÷',

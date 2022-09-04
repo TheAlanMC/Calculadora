@@ -67,14 +67,42 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     if (state.text == '0' || state.text == '-0') {
       newFormula = state.formula;
     } else {
-      newFormula = state.operation.isEmpty
-          ? state.formula + state.text
-          : state.formula + state.operation + state.text;
+      if (state.operation.isEmpty) {
+        newFormula = state.formula + state.text;
+      } else {
+        newFormula = state.formula + state.operation + state.text;
+      }
     }
     newOperation = operation;
     emit(CalculatorState(
       formula: newFormula,
       operation: newOperation,
+    ));
+  }
+
+  void deleteLastEntry() {
+    final String newFormula, newOperation, newSubNumber, newNumber;
+    if (state.subtext.isEmpty) {
+      newFormula = ' ';
+      newOperation = '';
+      newSubNumber = '';
+      newNumber = '0';
+    } else if (state.text.replaceAll('-', '').length > 1) {
+      newFormula = state.formula;
+      newOperation = state.operation;
+      newSubNumber = state.text.substring(0, state.text.length - 1);
+      newNumber = state.text.substring(0, state.text.length - 1);
+    } else {
+      newFormula = state.formula;
+      newOperation = state.operation;
+      newSubNumber = '';
+      newNumber = '0';
+    }
+    emit(CalculatorState(
+      formula: newFormula,
+      operation: newOperation,
+      subtext: newSubNumber,
+      text: newNumber,
     ));
   }
 }
