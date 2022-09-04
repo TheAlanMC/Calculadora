@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class SubResult extends StatelessWidget {
   final String formula;
   final String operation;
+  final String subtext;
 
-  const SubResult({Key? key, required this.formula, required this.operation})
+  const SubResult(
+      {Key? key,
+      required this.formula,
+      required this.operation,
+      required this.subtext})
       : super(key: key);
 
   @override
@@ -16,7 +21,7 @@ class SubResult extends StatelessWidget {
         child: FittedBox(
           fit: BoxFit.contain,
           child: Text(
-            formula + operation,
+            formula + operation + subtext,
             style: const TextStyle(fontSize: 20),
           ),
         ));

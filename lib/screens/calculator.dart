@@ -27,13 +27,14 @@ class Calculator extends StatelessWidget {
                           btnText: 'AC',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.resetAll(),
                         ),
                         NumButton(
                           btnText: '+/-',
                           btnColor: Colors.grey,
                           txtColor: Colors.black,
-                          onPressed: () {},
+                          onPressed: () =>
+                              calculatorCubit.changeNegativePositive(),
                         ),
                         NumButton(
                           btnText: '⌫',
@@ -44,7 +45,7 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '÷',
                           btnColor: Colors.orange,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.selectOperation('÷'),
                         ),
                       ],
                     ),
@@ -69,7 +70,7 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: 'x',
                           btnColor: Colors.orange,
-                          onPressed: () => {},
+                          onPressed: () => calculatorCubit.selectOperation('x'),
                         ),
                       ],
                     ),
@@ -94,7 +95,7 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '-',
                           btnColor: Colors.orange,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.selectOperation('-'),
                         ),
                       ],
                     ),
@@ -119,7 +120,7 @@ class Calculator extends StatelessWidget {
                         NumButton(
                           btnText: '+',
                           btnColor: Colors.orange,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.selectOperation('+'),
                         ),
                       ],
                     ),
@@ -130,12 +131,12 @@ class Calculator extends StatelessWidget {
                           btnText: '0',
                           btnColor: Colors.grey.shade700,
                           big: true,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addNumber('0'),
                         ),
                         NumButton(
                           btnText: '.',
                           btnColor: Colors.grey.shade700,
-                          onPressed: () {},
+                          onPressed: () => calculatorCubit.addDecimalPoint(),
                         ),
                         NumButton(
                           btnText: '=',

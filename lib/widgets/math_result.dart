@@ -14,8 +14,9 @@ class MathResult extends StatelessWidget {
         return Column(
           children: [
             SubResult(
-              formula: state.formula + state.subtext,
+              formula: state.formula,
               operation: state.operation,
+              subtext: state.subtext,
             ),
             MainResult(text: state.text),
           ],
